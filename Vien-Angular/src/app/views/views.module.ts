@@ -1,3 +1,4 @@
+import { ProductsModule } from './products/products.module';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ViewsComponent } from './views.component';

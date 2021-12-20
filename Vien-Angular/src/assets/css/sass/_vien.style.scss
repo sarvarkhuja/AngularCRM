@@ -6510,7 +6510,7 @@ rating span {
 
   .image-side {
     width: 40%;
-    background: url("../../../img/login-balloon.jpg") no-repeat center top;
+    background: $theme-color-1;
     background-size: cover;
     padding: 80px 40px;
 
@@ -7482,6 +7482,7 @@ i.large-icon {
 .glide.details {
   img {
     margin-bottom: 0;
+    margin: auto;
   }
 
   .glide__slides {

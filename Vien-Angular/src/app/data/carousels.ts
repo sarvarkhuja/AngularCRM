@@ -58,54 +58,30 @@ export const carouselData: ICarouselItem[] = [
 export const carouselImages: ICarouselImage[] = [
   {
     id: 'large-0',
-    img: '/assets/img/parkin.jpg',
+    img: '/assets/img/primary-1.png',
   },
   {
     id: 'large-1',
-    img: '/assets/img/napoleonshat.jpg',
+    img: '/assets/img/primary-2.png',
   },
   {
     id: 'large-2',
-    img: '/assets/img/marble-cake.jpg',
+    img: '/assets/img/primary-3.png',
   },
-  {
-    id: 'large-3',
-    img: '/assets/img/fruitcake.jpg',
-  },
-  {
-    id: 'large-4',
-    img: '/assets/img/magdalena.jpg',
-  },
-  {
-    id: 'large-5',
-    img: '/assets/img/tea-loaf.jpg',
-  }
 ];
 
 export const carouselThumbs: ICarouselImage[] = [
   {
-    id: 'thumb-0',
-    img: '/assets/img/parkin-thumb.jpg',
+    id: 'large-0',
+    img: '/assets/img/primary-1.png',
   },
   {
-    id: 'thumb-1',
-    img: '/assets/img/napoleonshat-thumb.jpg',
+    id: 'large-1',
+    img: '/assets/img/primary-2.png',
   },
   {
-    id: 'thumb-2',
-    img: '/assets/img/marble-cake-thumb.jpg',
+    id: 'large-2',
+    img: '/assets/img/primary-3.png',
   },
-  {
-    id: 'thumb-3',
-    img: '/assets/img/fruitcake-thumb.jpg',
-  },
-  {
-    id: 'thumb-4',
-    img: '/assets/img/magdalena-thumb.jpg',
-  },
-  {
-    id: 'thumb-5',
-    img: '/assets/img/tea-loaf-thumb.jpg',
-  }
 ];
 

@@ -10,8 +10,8 @@ import { LayoutContainersModule } from 'src/app/containers/layout/layout.contain
 @NgModule({
   declarations: [BlankPageComponent, AppComponent],
   imports: [
-    CommonModule,
     AppRoutingModule,
+    CommonModule,
     SharedModule,
     LayoutContainersModule
   ]
