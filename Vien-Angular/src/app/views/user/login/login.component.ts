@@ -29,7 +29,7 @@ export class LoginComponent implements OnInit {
     this.buttonState = 'show-spinner';
 
     this.authService.signIn(this.loginForm.value).subscribe((user) => {
-      this.router.navigate(['/']);
+      this.router.navigate(['/app']);
     }, (error) => {
       this.buttonDisabled = false;
       this.buttonState = '';

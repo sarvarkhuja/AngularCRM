@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
   selector: 'app-glide-thumbs',
   templateUrl: './glide-thumbs.component.html'
 })
-export class GlideThumbsComponent implements OnInit, AfterViewInit, OnDestroy {
+export class GlideThumbsComponent implements OnInit, AfterContentInit, OnDestroy {
 
   @ViewChild('glideRef', { static: true }) glideRef: ElementRef;
   @ViewChild('glideThumbsRef', { static: true }) glideThumbsRef: ElementRef;
@@ -63,7 +63,7 @@ export class GlideThumbsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.settingsThumbs.breakpoints = newBreakpoints;
   }
 
-  ngAfterViewInit() {
+  ngAfterContentInit() {
     this.glideCount = Array(this.glideSlides.nativeElement.childNodes.length).fill(1).map((x, i) => i);
 
     this.updateThumbBreakpoints();
