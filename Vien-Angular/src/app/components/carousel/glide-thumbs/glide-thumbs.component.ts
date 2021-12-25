@@ -7,6 +7,7 @@ import {
   AfterContentInit,
   AfterViewInit,
   OnDestroy,
+  ChangeDetectorRef,
 } from "@angular/core";
 import Glide from "@glidejs/glide";
 import { LangService } from "src/app/shared/lang.service";
@@ -42,7 +43,8 @@ export class GlideThumbsComponent implements OnInit, AfterViewInit, OnDestroy {
 
   constructor(
     private langService: LangService,
-    private sidebarService: SidebarService
+    private sidebarService: SidebarService,
+    private cdRef: ChangeDetectorRef
   ) {
     this.sidebarSubscription = this.sidebarService.getSidebar().subscribe(
       (res) => {
@@ -85,11 +87,9 @@ export class GlideThumbsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.updateThumbBreakpoints();
     this.glideCarouselImages = new Glide(this.glideRef.nativeElement, {
       ...this.settingsImages,
-      direction: this.langService.direction,
     });
     this.glideCarouselThumbs = new Glide(this.glideThumbsRef.nativeElement, {
       ...this.settingsThumbs,
-      direction: this.langService.direction,
     });
 
     this.glideCarouselThumbs.on("resize", () => {
@@ -103,6 +103,7 @@ export class GlideThumbsComponent implements OnInit, AfterViewInit, OnDestroy {
     this.glideCarouselThumbs.mount();
 
     this.thumbsResize();
+    this.cdRef.detectChanges();
   }
 
   thumbsResize() {

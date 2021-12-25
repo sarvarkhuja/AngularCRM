@@ -1,1 +1,7 @@
-<button type="button" class="btn btn-primary" (click)="openModalWithComponent()">{{'modal.create-component' | translate}}</button>
+<button
+  type="button"
+  class="btn btn-primary"
+  (click)="openModalWithComponent()"
+>
+  <ng-content></ng-content>
+</button>
