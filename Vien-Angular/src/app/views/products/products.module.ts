@@ -8,6 +8,8 @@ import { ProductsRoutes } from "./products.routing";
 import { ComponentsCarouselModule } from "src/app/components/carousel/components.carousel.module";
 import { PagesContainersModule } from "src/app/containers/pages/pages.containers.module";
 import { UiModalsContainersModule } from "src/app/containers/ui/modals/ui.modals.containers.module";
+import { ModalFormComponent } from "./modal-form/modal-form.component";
+import { OrderContainerComponent } from "./order-container/order-container.component";
 
 @NgModule({
   imports: [
@@ -19,6 +21,11 @@ import { UiModalsContainersModule } from "src/app/containers/ui/modals/ui.modals
     PagesContainersModule,
     UiModalsContainersModule,
   ],
-  declarations: [ProductsComponent, CtaComponent],
+  declarations: [
+    ProductsComponent,
+    CtaComponent,
+    ModalFormComponent,
+    OrderContainerComponent,
+  ],
 })
 export class ProductsModule {}
