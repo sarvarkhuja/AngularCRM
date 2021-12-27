@@ -10,6 +10,9 @@ import { PagesContainersModule } from "src/app/containers/pages/pages.containers
 import { UiModalsContainersModule } from "src/app/containers/ui/modals/ui.modals.containers.module";
 import { ModalFormComponent } from "./modal-form/modal-form.component";
 import { OrderContainerComponent } from "./order-container/order-container.component";
+import { FormValidationsContainersModule } from "src/app/containers/form-validations/form.validations.containers.module";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { NgSelectModule } from "@ng-select/ng-select";
 
 @NgModule({
   imports: [
@@ -20,6 +23,10 @@ import { OrderContainerComponent } from "./order-container/order-container.compo
     ComponentsCarouselModule,
     PagesContainersModule,
     UiModalsContainersModule,
+    FormValidationsContainersModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgSelectModule,
   ],
   declarations: [
     ProductsComponent,
