@@ -13,7 +13,7 @@ export class AppComponent implements OnInit, AfterViewInit {
   constructor(private langService: LangService, private renderer: Renderer2) {}
 
   ngOnInit() {
-    //this.langService.init();
+    this.langService.init();
   }
 
   ngAfterViewInit() {
