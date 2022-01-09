@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "eCommerceFront": {
+    "ecommercefront": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -178,18 +178,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "eCommerceFront:build"
+            "browserTarget": "ecommercefront:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "eCommerceFront:build:production"
+              "browserTarget": "ecommercefront:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "eCommerceFront:build"
+            "browserTarget": "ecommercefront:build"
           }
         },
         "test": {
@@ -223,16 +223,16 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "eCommerceFront:serve"
+            "devServerTarget": "ecommercefront:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "eCommerceFront:serve:production"
+              "devServerTarget": "ecommercefront:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "eCommerceFront"
+  "defaultProject": "ecommercefront"
 }

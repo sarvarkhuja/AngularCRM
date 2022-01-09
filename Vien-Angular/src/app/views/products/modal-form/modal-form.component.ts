@@ -38,7 +38,6 @@ export class ModalFormComponent implements OnInit {
   }
   changeCountry(city: string, value) {
     value.viewModel = "";
-    console.log(this.ngSelectComponent);
 
     this.regions = [];
     Regions.forEach((item) => {
@@ -56,6 +55,5 @@ export class ModalFormComponent implements OnInit {
   }
   increment() {
     this.quantity++;
-    console.log(this.quantity);
   }
 }
