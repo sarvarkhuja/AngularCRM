@@ -18,7 +18,6 @@ export class OrderContainerComponent implements OnInit {
   openModalWithComponent() {
     const initialState = {
       list: ["...", ".."],
-      title: this.translateService.instant("modal.modal-title"),
     };
     this.bsModalRef = this.modalService.show(ModalFormComponent, {
       initialState,
