@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormBuilder, FormGroup } from "@angular/forms";
 import { NgSelectComponent } from "@ng-select/ng-select";
 import { BsModalRef } from "ngx-bootstrap/modal";
 import { Regions } from "./regions";
@@ -15,12 +16,16 @@ export class ModalFormComponent implements OnInit {
   list: any[] = [];
   selectedCountry: string;
 
+  form: FormGroup;
+  constructor(fb: FormBuilder, public bsModalRef: BsModalRef) {
+    this.form = fb.group({
+      phone: ["+(998)"],
+    });
+  }
   quantity = 1;
 
   citiesArray: Array<string> = [];
   regions: Array<string> = [];
-
-  constructor(public bsModalRef: BsModalRef) {}
 
   ngOnInit() {
     this.getCities();

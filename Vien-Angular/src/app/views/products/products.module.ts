@@ -13,6 +13,7 @@ import { OrderContainerComponent } from "./order-container/order-container.compo
 import { FormValidationsContainersModule } from "src/app/containers/form-validations/form.validations.containers.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
+import { PhoneMaskDirective } from "src/app/shared/pipes/phone-mask/phone-mask.directive";
 
 @NgModule({
   imports: [

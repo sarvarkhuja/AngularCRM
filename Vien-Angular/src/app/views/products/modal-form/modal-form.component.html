@@ -137,6 +137,21 @@
       <button class="btn btn-primary" type="submit">Yuborish</button>
     </form>
 
+    <form [formGroup]="form">
+      <div class="form-group">
+        <label for="phone-number">Phone Number</label>
+
+        <input
+          class="form-control"
+          type="text"
+          appPhoneMask
+          maxlength="18"
+          placeholder="+(998) (__) ___-__-__"
+          formControlName="phone"
+          id="phone-number"
+        />
+      </div>
+    </form>
     <div [hidden]="!submitted">
       <h2>You submitted the following:</h2>
       <div class="row">
