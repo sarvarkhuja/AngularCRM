@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { ErrorComponent } from '../views/error/error.component';
-import { TranslateModule } from '@ngx-translate/core';
-import { RouterModule } from '@angular/router';
-import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ErrorComponent } from "../views/error/error.component";
+import { TranslateModule } from "@ngx-translate/core";
+import { RouterModule } from "@angular/router";
+import { PerfectScrollbarModule } from "ngx-perfect-scrollbar";
 @NgModule({
   declarations: [ErrorComponent],
   imports: [
@@ -17,7 +17,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
     RouterModule,
     ErrorComponent,
     TranslateModule,
-    CommonModule
-  ]
+    CommonModule,
+  ],
 })
-export class SharedModule { }
+export class SharedModule {}

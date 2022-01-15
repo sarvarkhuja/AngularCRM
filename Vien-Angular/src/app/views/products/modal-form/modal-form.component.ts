@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup } from "@angular/forms";
 import { NgSelectComponent } from "@ng-select/ng-select";
 import { BsModalRef } from "ngx-bootstrap/modal";
 import { Regions } from "./regions";
+import { ProductCategory } from "./product-category.mock";
+import { ProductCategoryModel } from "./product-category.model";
 
 @Component({
   selector: "modal-form",
@@ -15,11 +17,21 @@ export class ModalFormComponent implements OnInit {
   closeBtnName: string;
   list: any[] = [];
   selectedCountry: string;
+  status: boolean = false;
+  phoneNumber: string;
+
+  productCategory: ProductCategoryModel[] = ProductCategory;
 
   form: FormGroup;
   constructor(fb: FormBuilder, public bsModalRef: BsModalRef) {
     this.form = fb.group({
-      phone: ["+(998)"],
+      fullName: "",
+      country: "",
+      region: "",
+      promocode: "",
+      categoryName: "",
+      quantity: this.quantity,
+      phoneNumber: ["+(998)"],
     });
   }
   quantity = 1;
@@ -40,11 +52,22 @@ export class ModalFormComponent implements OnInit {
   }
   onSubmit() {
     this.submitted = true;
+    console.log("Form values: ", this.form.value);
   }
-  changeCountry(city: string, value) {
-    value.viewModel = "";
-
+  selectCategory(event, status, index) {
+    this.productCategory.forEach((item) => (item.selected = false));
+    this.productCategory[index].selected =
+      !this.productCategory[index].selected;
+    this.form.patchValue({
+      categoryName: this.productCategory[index].categoryTitle,
+    });
+  }
+  changeCountry(city: string) {
     this.regions = [];
+    this.form.patchValue({
+      region: "",
+    });
+
     Regions.forEach((item) => {
       let selectedItem = Object.keys(item.name).join();
       if (selectedItem == city) {

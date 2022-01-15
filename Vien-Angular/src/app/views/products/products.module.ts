@@ -13,7 +13,7 @@ import { OrderContainerComponent } from "./order-container/order-container.compo
 import { FormValidationsContainersModule } from "src/app/containers/form-validations/form.validations.containers.module";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { NgSelectModule } from "@ng-select/ng-select";
-import { PhoneMaskDirective } from "src/app/shared/pipes/phone-mask/phone-mask.directive";
+import { PhoneMaskModule } from "src/app/shared/pipes/phone-mask/phone-mask.module";
 
 @NgModule({
   imports: [
@@ -28,6 +28,7 @@ import { PhoneMaskDirective } from "src/app/shared/pipes/phone-mask/phone-mask.d
     FormsModule,
     ReactiveFormsModule,
     NgSelectModule,
+    PhoneMaskModule,
   ],
   declarations: [
     ProductsComponent,

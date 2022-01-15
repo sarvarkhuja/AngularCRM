@@ -11,37 +11,39 @@
 </div>
 <div class="modal-body">
   <div>
-    <form #overLineForm="ngForm" novalidate>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" [hidden]="submitted">
       <p>Kategoriyani tanlang</p>
       <div class="category-wrapper">
-        <div class="single-category">
-          <img class="selected" src="./assets/img/primary-1.png" alt="" />
-          <label for="image">Image 1</label>
-        </div>
-        <div class="single-category">
-          <img src="./assets/img/primary-1.png" alt="" />
-          <label for="image">Image 1</label>
-        </div>
-        <div class="single-category">
-          <img src="./assets/img/primary-1.png" alt="" />
-          <label for="image">Image 1</label>
-        </div>
-        <div class="single-category">
-          <img src="./assets/img/primary-1.png" alt="" />
-          <label for="image">Image 1</label>
-        </div>
-        <div class="single-category">
-          <img src="./assets/img/primary-1.png" alt="" />
-          <label for="image">Image 1</label>
+        <div
+          *ngFor="let category of productCategory; let i = index"
+          class="single-category"
+        >
+          <img
+            (click)="selectCategory($event, category.selected, i)"
+            [ngClass]="category.selected ? 'selected' : 'notSelected'"
+            id="{{ category.id }}"
+            src="{{ category.categoryImage }}"
+            alt="{{ category.categoryTitle }}"
+          />
+          <label for="image">{{ category.categoryTitle }}</label>
         </div>
       </div>
+
       <p class="mt-3 mb-1">Soni</p>
       <div class="btn-group mr-2 mb-5" role="group" aria-label="Second group">
-        <button type="button" class="btn btn-primary" (click)="decrement()">
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="decrement()"
+        >
           -
         </button>
-        <div type="button" class="btn btn-primary">{{ quantity }}</div>
-        <button type="button" class="btn btn-primary" (click)="increment()">
+        <div type="button" class="btn btn-outline-primary">{{ quantity }}</div>
+        <button
+          type="button"
+          class="btn btn-outline-primary"
+          (click)="increment()"
+        >
           +
         </button>
       </div>
@@ -49,33 +51,24 @@
         <input
           class="form-control"
           required
-          ngModel
-          #fullName="ngModel"
+          formControlName="fullName"
           name="fullName"
         />
         <span>{{ "Ism" | translate }}</span>
-        <div
-          *ngIf="!fullName.valid && overLineForm.submitted"
-          class="invalid-tooltip"
-        >
-          Value is required!
-        </div>
       </label>
       <label class="form-group has-float-label">
         <input
           class="form-control"
           required
-          ngModel
-          #phoneNumber="ngModel"
+          formControlName="phoneNumber"
           name="phoneNumber"
+          type="text"
+          appPhoneMask
+          maxlength="18"
+          placeholder="+(998) (__) ___-__-__"
+          id="phone-number"
         />
         <span>{{ "Telefon" | translate }}</span>
-        <div
-          *ngIf="!phoneNumber.valid && overLineForm.submitted"
-          class="invalid-tooltip"
-        >
-          Value is required!
-        </div>
       </label>
       <div class="d-flex w-100">
         <label class="form-group has-float-label w-50 pr-3">
@@ -84,19 +77,12 @@
             bindLabel="name"
             [searchable]="false"
             required
-            ngModel
-            (change)="changeCountry($event, ngSelectSingle3)"
-            #ngSelectSingle2="ngModel"
+            formControlName="country"
+            (change)="changeCountry($event)"
             name="country"
           >
           </ng-select>
           <span>Shahar</span>
-          <div
-            *ngIf="!ngSelectSingle2.valid && overLineForm.submitted"
-            class="invalid-tooltip"
-          >
-            Value is required!
-          </div>
         </label>
 
         <label class="form-group has-float-label w-50">
@@ -104,54 +90,18 @@
             [items]="regions"
             [searchable]="false"
             required
-            ngModel
-            #ngSelectSingle3="ngModel"
-            name="region"
+            formControlName="region"
           >
           </ng-select>
           <span>Tuman</span>
-          <div
-            *ngIf="!ngSelectSingle3.valid && overLineForm.submitted"
-            class="invalid-tooltip"
-          >
-            Value is required!
-          </div>
         </label>
       </div>
       <label class="form-group has-float-label">
-        <input
-          class="form-control"
-          required
-          ngModel
-          #fullName="ngModel"
-          name="fullName"
-        />
-        <span>Promocode</span>
-        <div
-          *ngIf="!fullName.valid && overLineForm.submitted"
-          class="invalid-tooltip"
-        >
-          Value is required!
-        </div>
+        <input class="form-control" required formControlName="promocode" />
       </label>
       <button class="btn btn-primary" type="submit">Yuborish</button>
     </form>
 
-    <form [formGroup]="form">
-      <div class="form-group">
-        <label for="phone-number">Phone Number</label>
-
-        <input
-          class="form-control"
-          type="text"
-          appPhoneMask
-          maxlength="18"
-          placeholder="+(998) (__) ___-__-__"
-          formControlName="phone"
-          id="phone-number"
-        />
-      </div>
-    </form>
     <div [hidden]="!submitted">
       <h2>You submitted the following:</h2>
       <div class="row">

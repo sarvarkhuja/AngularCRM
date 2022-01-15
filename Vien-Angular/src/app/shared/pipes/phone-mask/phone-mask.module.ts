@@ -1,8 +1,8 @@
 import { NgModule } from "@angular/core";
-import PhoneMaskDirective from "./phone-mask.directive";
+import { PhoneMaskDirective } from "./phone-mask.directive";
 
 @NgModule({
-  declarations: [PhoneMaskDirective],
   exports: [PhoneMaskDirective],
+  declarations: [PhoneMaskDirective],
 })
-export class PhoneMaskDirective {}
+export class PhoneMaskModule {}
