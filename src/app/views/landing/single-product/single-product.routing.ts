@@ -1,6 +1,6 @@
 import { SingleProductComponent } from "./single-product.component";
 import { Routes, RouterModule } from "@angular/router";
-import { ProductDetailsComponent } from "./components/product-details/product-details.component";
+import { ProductIndexComponent } from "./components/product-index/product-index.component";
 
 const routes: Routes = [
   {
@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: "",
-        component: ProductDetailsComponent,
+        component: ProductIndexComponent,
       },
     ],
   },
