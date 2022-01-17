@@ -1,0 +1,23 @@
+.category-wrapper {
+  display: flex;
+  width: 100%;
+
+  .single-category {
+    width: 20%;
+    margin: 3px;
+    display: block;
+    text-align: center;
+
+    img {
+      &.selected {
+        border-color: #145388;
+      }
+
+      width: 100%;
+      margin-bottom: 5px;
+      padding: 5px;
+      border: 1px solid #d7d7d7;
+      border-radius: 0.2rem;
+    }
+  }
+}

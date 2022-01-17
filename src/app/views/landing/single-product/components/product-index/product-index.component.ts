@@ -1,4 +1,9 @@
 import { Component, OnInit } from "@angular/core";
+import {
+  carouselImages,
+  carouselThumbs,
+} from "../../mock-data/product-slider.mock";
+import { ProductSlider } from "../../models/product-slider.model";
 
 @Component({
   selector: "product-index",
@@ -6,6 +11,8 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./product-index.component.scss"],
 })
 export class ProductIndexComponent implements OnInit {
+  detailImages: ProductSlider[] = carouselImages;
+  detailThumbs: ProductSlider[] = carouselThumbs;
   constructor() {}
 
   ngOnInit() {}

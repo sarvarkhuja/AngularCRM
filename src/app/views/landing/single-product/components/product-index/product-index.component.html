@@ -1,3 +1,51 @@
-<p>
-  product-index works!
-</p>
+<div class="row">
+  <div class="col-12">
+    <div class="separator mb-5">
+      <h1>Enzo BEC/EZER-1000</h1>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12 col-md-12 col-xl-8 col-left">
+    <div class="card mb-4">
+      <div class="card-body">
+        <product-slider
+          [images]="detailImages"
+          [settingsImages]="{
+            bound: true,
+            rewind: false,
+            focusAt: 0,
+            startAt: 0,
+            gap: 5,
+            perView: 1
+          }"
+          [thumbs]="detailThumbs"
+          [settingsThumbs]="{
+            bound: true,
+            rewind: false,
+            focusAt: 0,
+            startAt: 0,
+            gap: 10,
+            perView: 5,
+            breakpoints: {
+              '2640': { perView: 5 },
+              '576': { perView: 4 },
+              '420': { perView: 3 }
+            }
+          }"
+        ></product-slider>
+      </div>
+    </div>
+  </div>
+
+  <div class="col-12 col-md-12 col-xl-4 col-right">
+    <product-description></product-description>
+  </div>
+</div>
+<div class="row">
+  <div class="col-12">
+    <div class="mb-4">
+      <product-tabs></product-tabs>
+    </div>
+  </div>
+</div>

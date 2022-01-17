@@ -1,12 +1,132 @@
-import { Component, OnInit } from "@angular/core";
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
+import { LangService } from "src/app/shared/lang.service";
+import Glide from "@glidejs/glide";
 
 @Component({
   selector: "product-slider",
   templateUrl: "./product-slider.component.html",
   styleUrls: ["./product-slider.component.scss"],
 })
-export class ProductSliderComponent implements OnInit {
-  constructor() {}
+export class ProductSliderComponent
+  implements OnInit, AfterViewInit, OnDestroy
+{
+  @ViewChild("glideRef", { static: true }) glideRef: ElementRef;
+  @ViewChild("glideThumbsRef", { static: true }) glideThumbsRef: ElementRef;
+  @ViewChild("glideSlides", { static: true }) glideSlides: ElementRef;
+  @ViewChild("glideThumbs", { static: true }) glideThumbs: ElementRef;
+
+  @Input() settingsImages;
+  @Input() settingsThumbs;
+  @Input() images;
+  @Input() thumbs;
+
+  glideThumbCountMax = 5;
+  glideCount = [];
+  glideCarouselImages;
+  glideCarouselThumbs;
+
+  thumbsPerView;
+  renderArrows = true;
+  activeIndex = 0;
+  updateTimeout;
+  sidebar;
+  constructor(private cdRef: ChangeDetectorRef) {}
 
   ngOnInit() {}
+
+  updateThumbBreakpoints() {
+    const thumbBreakpoints = this.settingsThumbs.breakpoints;
+    const newBreakpoints = {};
+    for (const prop in thumbBreakpoints) {
+      if (thumbBreakpoints[prop]) {
+        newBreakpoints[prop] = {
+          perView: Math.min(
+            thumbBreakpoints[prop].perView,
+            this.glideCount.length
+          ),
+        };
+      }
+    }
+    this.settingsThumbs.breakpoints = newBreakpoints;
+  }
+
+  ngAfterViewInit() {
+    this.glideCount = Array(this.glideSlides.nativeElement.childNodes.length)
+      .fill(1)
+      .map((x, i) => i);
+
+    this.updateThumbBreakpoints();
+    this.glideCarouselImages = new Glide(this.glideRef.nativeElement, {
+      ...this.settingsImages,
+    });
+    this.glideCarouselThumbs = new Glide(this.glideThumbsRef.nativeElement, {
+      ...this.settingsThumbs,
+    });
+
+    this.glideCarouselThumbs.on("resize", () => {
+      this.thumbsResize();
+    });
+    this.glideCarouselImages.on("swipe.end", () => {
+      this.imagesSwipeEnd();
+    });
+
+    this.glideCarouselImages.mount();
+    this.glideCarouselThumbs.mount();
+
+    this.thumbsResize();
+    this.cdRef.detectChanges();
+  }
+
+  thumbsResize() {
+    const perView = Math.min(
+      this.glideCarouselThumbs.settings.perView,
+      this.glideCount.length
+    );
+    this.thumbsPerView = perView;
+    if (this.glideCount.length <= perView) {
+      this.renderArrows = false;
+    }
+    this.glideCarouselImages.update();
+    this.glideCarouselThumbs.update();
+  }
+
+  onThumbClick(index) {
+    this.activeIndex = index;
+    this.glideCarouselImages.go("=" + index);
+  }
+
+  imagesSwipeEnd() {
+    const gap = this.glideCarouselThumbs.index + this.thumbsPerView;
+    this.activeIndex = this.glideCarouselImages.index;
+    if (this.activeIndex >= gap) {
+      this.glideCarouselThumbs.go(">");
+    }
+    if (this.activeIndex < this.glideCarouselThumbs.index) {
+      this.glideCarouselThumbs.go("<");
+    }
+  }
+
+  ngOnDestroy() {
+    clearTimeout(this.updateTimeout);
+    this.updateTimeout = null;
+
+    this.glideCarouselImages.destroy();
+    this.glideCarouselThumbs.destroy();
+  }
+
+  update() {
+    this.updateTimeout = setTimeout(() => {
+      this.glideCarouselThumbs.update();
+      this.glideCarouselImages.update();
+    }, 500);
+  }
 }
