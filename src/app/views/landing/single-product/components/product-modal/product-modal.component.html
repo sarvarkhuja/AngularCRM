@@ -51,8 +51,8 @@
         <input
           class="form-control"
           required
-          formControlName="fullName"
-          name="fullName"
+          formControlName="firstName"
+          name="firstName"
         />
         <span>{{ "Ism" | translate }}</span>
       </label>
@@ -77,9 +77,9 @@
             bindLabel="name"
             [searchable]="false"
             required
-            formControlName="country"
-            (change)="changeCountry($event)"
-            name="country"
+            formControlName="city"
+            (change)="changecity($event)"
+            name="city"
           >
           </ng-select>
           <span>Shahar</span>
@@ -87,10 +87,10 @@
 
         <label class="form-group has-float-label w-50">
           <ng-select
-            [items]="regions"
+            [items]="districts"
             [searchable]="false"
             required
-            formControlName="region"
+            formControlName="district"
           >
           </ng-select>
           <span>Tuman</span>
@@ -110,17 +110,31 @@
 
     <div [hidden]="!submitted">
       <h2>You submitted the following:</h2>
+      <div class=""></div>
       <div class="row">
-        <div class="col-xs-3">Name</div>
+        <div class="col-6">Ism</div>
+        <div class="col-6">{{ query.firstName }}</div>
       </div>
       <div class="row">
-        <div class="col-xs-3">Alter Ego</div>
+        <div class="col-6">Shahar</div>
+        <div class="col-6">{{ query.city }}</div>
       </div>
       <div class="row">
-        <div class="col-xs-3">Power</div>
+        <div class="col-6">Tuman</div>
+        <div class="col-6">{{ query.district }}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">Soni</div>
+        <div class="col-6">{{ query.quantity }}</div>
+      </div>
+      <div class="row">
+        <div class="col-6">Telefon Nomer</div>
+        <div class="col-6">{{ query.phoneNumber }}</div>
       </div>
       <br />
-      <button class="btn btn-primary" (click)="submitted = false">Edit</button>
+      <button class="btn btn-primary" (click)="bsModalRef.hide()">
+        Zakas qayta berish
+      </button>
     </div>
   </div>
 </div>

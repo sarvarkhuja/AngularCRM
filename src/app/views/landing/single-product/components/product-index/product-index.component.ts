@@ -1,9 +1,11 @@
 import { Component, OnInit } from "@angular/core";
+import { $ } from "protractor";
 import {
   carouselImages,
   carouselThumbs,
 } from "../../mock-data/product-slider.mock";
 import { ProductSlider } from "../../models/product-slider.model";
+import { SingleProductService } from "../../services/single-product.service";
 
 @Component({
   selector: "product-index",
@@ -13,7 +15,11 @@ import { ProductSlider } from "../../models/product-slider.model";
 export class ProductIndexComponent implements OnInit {
   detailImages: ProductSlider[] = carouselImages;
   detailThumbs: ProductSlider[] = carouselThumbs;
-  constructor() {}
+  constructor(private $data: SingleProductService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.$data.getAllProductList().subscribe((w) => {
+      console.log(w);
+    });
+  }
 }

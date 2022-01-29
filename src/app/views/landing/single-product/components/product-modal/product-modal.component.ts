@@ -1,3 +1,4 @@
+import { SingleProductService } from "./../../services/single-product.service";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { FormGroup, FormBuilder } from "@angular/forms";
 import { NgSelectComponent } from "@ng-select/ng-select";
@@ -16,25 +17,37 @@ export class ProductModalComponent implements OnInit {
   title: string;
   closeBtnName: string;
   list: any[] = [];
-  selectedCountry: string;
   status: boolean = false;
   phoneNumber: string;
 
+  query = {
+    firstName: "",
+    city: "",
+    district: "",
+    promocode: "",
+    categoryName: "",
+    quantity: 1,
+    phoneNumber: "+(998)",
+  };
   productCategory: ProductCategoryModel[] = ProductCategory;
 
   quantity = 1;
 
   citiesArray: Array<string> = [];
-  regions: Array<string> = [];
+  districts: Array<string> = [];
 
   form: FormGroup;
-  constructor(fb: FormBuilder, public bsModalRef: BsModalRef) {
+  constructor(
+    fb: FormBuilder,
+    public bsModalRef: BsModalRef,
+    private $data: SingleProductService
+  ) {
     this.form = fb.group({
-      fullName: "",
-      country: "",
-      region: "",
+      firstName: "",
+      city: "",
+      district: "",
       promocode: "",
-      categoryName: "",
+      productVersionId: 0,
       quantity: this.quantity,
       phoneNumber: ["+(998)"],
     });
@@ -52,26 +65,30 @@ export class ProductModalComponent implements OnInit {
   }
   onSubmit() {
     this.submitted = true;
+
     console.log("Form values: ", this.form.value);
+    this.query = this.form.value;
+
+    this.$data.addSingleOrder(this.form.value).subscribe();
   }
   selectCategory(event, status, index) {
     this.productCategory.forEach((item) => (item.selected = false));
     this.productCategory[index].selected =
       !this.productCategory[index].selected;
     this.form.patchValue({
-      categoryName: this.productCategory[index].categoryTitle,
+      productVersionId: this.productCategory[index].id,
     });
   }
-  changeCountry(city: string) {
-    this.regions = [];
+  changecity(city: string) {
+    this.districts = [];
     this.form.patchValue({
-      region: "",
+      district: "",
     });
 
     Regions.forEach((item) => {
       let selectedItem = Object.keys(item.name).join();
       if (selectedItem == city) {
-        this.regions = item.name[city];
+        this.districts = item.name[city];
       }
     });
   }
