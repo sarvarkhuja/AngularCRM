@@ -10,8 +10,8 @@ import { AuthService } from "src/app/shared/auth.service";
 })
 export class LoginComponent implements OnInit {
   @ViewChild("loginForm") loginForm: NgForm;
-  emailModel = "demo@vien.com";
-  passwordModel = "demovien1122";
+  userNameModel = "";
+  passwordModel = "";
 
   buttonDisabled = false;
   buttonState = "";
@@ -30,9 +30,10 @@ export class LoginComponent implements OnInit {
     }
     this.buttonDisabled = true;
     this.buttonState = "show-spinner";
-
-    this.authService.signIn(this.loginForm.value).subscribe(
-      (user) => {
+    this.authService.login(this.loginForm.value).subscribe(
+      (data: any) => {
+        this.authService.loggedIn.next(true);
+        sessionStorage.setItem("token", data.token);
         this.router.navigate(["/app"]);
       },
       (error) => {

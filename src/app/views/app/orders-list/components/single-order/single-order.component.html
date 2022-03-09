@@ -1,0 +1,25 @@
+<div class="control-section">
+  <div class="content-wrapper">
+    <ejs-kanban
+      #kanbanObj
+      keyField="StatusName"
+      [dataSource]="kanbanData"
+      [cardSettings]="cardSettings"
+    >
+      <e-columns>
+        <e-column headerText="Open" keyField="New"></e-column>
+        <e-column headerText="In Progress" keyField="In Delivery"></e-column>
+        <e-column headerText="In Review" keyField="Review"></e-column>
+        <e-column headerText="Completed" keyField="Close"></e-column>
+      </e-columns>
+      <e-stackedHeaders>
+        <e-stackedHeader text="To Do" keyFields="Open"></e-stackedHeader>
+        <e-stackedHeader
+          text="Development Phase"
+          keyFields="In Delivery, Review"
+        ></e-stackedHeader>
+        <e-stackedHeader text="Done" keyFields="Close"></e-stackedHeader>
+      </e-stackedHeaders>
+    </ejs-kanban>
+  </div>
+</div>

@@ -8,6 +8,7 @@ import {
   redirectLoggedInTo,
 } from "@angular/fire/auth-guard";
 import { environment } from "./../../environments/environment";
+import { AuthGuard } from "src/core/guards/auth.guard";
 
 const redirectUnauthorizedToLogin = () => redirectUnauthorizedTo(["/user"]);
 const redirectLoggedInToItems = () => redirectLoggedInTo(["/app"]);
@@ -28,7 +29,7 @@ let routes: Routes = [
   {
     path: "app",
     loadChildren: () => import("./app/app.module").then((m) => m.AppModule),
-    canActivate: [AngularFireAuthGuard],
+    canActivate: [AuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin },
   },
   {

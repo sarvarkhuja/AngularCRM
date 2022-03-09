@@ -50,7 +50,6 @@ Table of Contents
 
 /* 00.Variables and Imports */
 
-@import url("https://fonts.googleapis.com/css?family=Nunito:300,400,400i,600,700");
 
 $main-menu-item-height: 110px;
 $main-menu-width: 120px;
@@ -6670,6 +6669,20 @@ rating span {
 
 .chart-container {
   height: 300px;
+}
+
+.ngx-datatable .datatable-footer .datatable-pager .pager .pages {
+  a {
+    padding: 7px 10px;
+    margin: 2px;
+    border-radius: 0.5rem;
+    border: 1px solid $secondary-color;
+    cursor: pointer;
+    display: inline-block;
+    width: 35px;
+    text-align: center;
+  }
+
 }
 
 .theme-colors {

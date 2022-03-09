@@ -27,7 +27,7 @@ export class ProductModalComponent implements OnInit {
     promocode: "",
     categoryName: "",
     quantity: 1,
-    phoneNumber: "+(998)",
+    phoneNumber: "",
   };
   productCategory: ProductCategoryModel[] = ProductCategory;
 
@@ -48,8 +48,9 @@ export class ProductModalComponent implements OnInit {
       district: "",
       promocode: "",
       productVersionId: 0,
+      productId: 4, //TODO product id needs to changed
       quantity: this.quantity,
-      phoneNumber: ["+(998)"],
+      phoneNumber: [""],
     });
   }
 

@@ -1,0 +1,47 @@
+<div class="card h-100">
+  <div class="card-body">
+    <ngx-datatable
+      [rows]="orderList"
+      [columns]="columns"
+      [columnMode]="ColumnMode.flex"
+      [headerHeight]="50"
+      [footerHeight]="50"
+    >
+      <ngx-datatable-column name="FirstName" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.FirstName }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="ContactPhone" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.ContactPhone }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="DeliveryAddress" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.DeliveryAddress }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Quantity" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.Quantity }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="OrderTotalSum" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.OrderTotalSum }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="Status" [flexGrow]="1">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.Status }}
+        </ng-template>
+      </ngx-datatable-column>
+      <ngx-datatable-column name="TrackingId" [flexGrow]="2">
+        <ng-template let-row="row" ngx-datatable-cell-template>
+          {{ row.TrackingId }}
+        </ng-template>
+      </ngx-datatable-column>
+    </ngx-datatable>
+  </div>
+</div>

@@ -9,43 +9,35 @@ export interface IMenuItem {
 
 const data: IMenuItem[] = [
   {
-    id: 'vien',
-    icon: 'iconsminds-air-balloon-1',
-    label: 'menu.vien',
-    to: '/app/vien',
+    id: "orders",
+    icon: "iconsminds-air-balloon-1",
+    label: "Orders",
+    to: "/app/orders",
     subs: [
       {
-        icon: 'simple-icon-paper-plane',
-        label: 'menu.start',
-        to: '/app/vien/start'
-      }
-    ]
-  },
-  {
-    id: 'second-menu',
-    icon: 'iconsminds-three-arrow-fork',
-    label: 'menu.second-menu',
-    to: '/app/second-menu',
-    subs: [
+        icon: "simple-icon-paper-plane",
+        label: "Order List",
+        to: "/app/orders/order-list",
+      },
       {
-        icon: 'simple-icon-paper-plane',
-        label: 'menu.second',
-        to: '/app/second-menu/second'
-      }
-    ]
+        icon: "simple-icon-paper-plane",
+        label: "Order Kanban List",
+        to: "/app/orders/order-kanban",
+      },
+    ],
   },
   {
-    id: 'blankpage',
-    icon: 'iconsminds-bucket',
-    label: 'menu.blank-page',
-    to: '/app/blank-page'
+    id: "blankpage",
+    icon: "iconsminds-bucket",
+    label: "menu.blank-page",
+    to: "/app/blank-page",
   },
   {
-    id: 'docs',
-    icon: 'iconsminds-library',
-    label: 'menu.docs',
-    to: 'https://vien-docs.coloredstrategies.com/',
-    newWindow: true
-  }
+    id: "docs",
+    icon: "iconsminds-library",
+    label: "menu.docs",
+    to: "https://vien-docs.coloredstrategies.com/",
+    newWindow: true,
+  },
 ];
 export default data;

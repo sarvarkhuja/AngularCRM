@@ -7,6 +7,13 @@
 // import { LoginModel } from '../../models/auth/auth-model';
 // import { User } from '../../models/auth/user.model';
 
+import { HttpClient, HttpHeaders } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { User } from "firebase";
+import { BehaviorSubject, Observable } from "rxjs";
+import { EndpointSettings } from "src/core/configs/endpoint.settings";
+import { LoginModel } from "src/core/models/auth/auth-model";
+
 // export const TOKEN_NAME = 'authToken';
 // export const REFRESH_TOKEN_NAME = 'rf_token';
 
@@ -224,3 +231,27 @@
 //     this.removeToken();
 //   }
 // }
+@Injectable()
+export class AuthService {
+  public loggedIn = new BehaviorSubject<boolean>(this.getAuthToken());
+
+  get isLoggedIn() {
+    return this.loggedIn.asObservable();
+  }
+
+  constructor(public http: HttpClient) {}
+
+  login(user: LoginModel): Observable<Response> {
+    return this.http.post<Response>(EndpointSettings.SIGN_IN, {
+      userName: user.userName,
+      password: user.password,
+    });
+  }
+
+  getAuthToken(): boolean {
+    return !!sessionStorage.getItem("token");
+  }
+  getAuthTokenValue(): string {
+    return sessionStorage.getItem("token");
+  }
+}

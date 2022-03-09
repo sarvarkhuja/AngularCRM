@@ -12,23 +12,6 @@
 <div class="modal-body">
   <div>
     <form [formGroup]="form" (ngSubmit)="onSubmit()" [hidden]="submitted">
-      <p>Kategoriyani tanlang</p>
-      <div class="category-wrapper">
-        <div
-          *ngFor="let category of productCategory; let i = index"
-          class="single-category"
-        >
-          <img
-            (click)="selectCategory($event, category.selected, i)"
-            [ngClass]="category.selected ? 'selected' : 'notSelected'"
-            id="{{ category.id }}"
-            src="{{ category.categoryImage }}"
-            alt="{{ category.categoryTitle }}"
-          />
-          <label for="image">{{ category.categoryTitle }}</label>
-        </div>
-      </div>
-
       <p class="mt-3 mb-1">Soni</p>
       <div class="btn-group mr-2 mb-5" role="group" aria-label="Second group">
         <button
@@ -47,31 +30,38 @@
           +
         </button>
       </div>
-      <label class="form-group has-float-label">
+      <div class="form-group">
+        <span>{{ "Ism" | translate }}</span>
         <input
           class="form-control"
           required
           formControlName="firstName"
           name="firstName"
         />
-        <span>{{ "Ism" | translate }}</span>
-      </label>
-      <label class="form-group has-float-label">
-        <input
-          class="form-control"
-          required
-          formControlName="phoneNumber"
-          name="phoneNumber"
-          type="text"
-          appPhoneMask
-          maxlength="18"
-          placeholder="+(998) (__) ___-__-__"
-          id="phone-number"
-        />
-        <span>{{ "Telefon" | translate }}</span>
-      </label>
+      </div>
+      <div class="form-group">
+        <span>phone</span>
+        <div class="input-group mb-3">
+          <div class="input-group-prepend">
+            <span id="basic-addon1" class="input-group-text">+(998)</span>
+          </div>
+          <input
+            class="form-control"
+            required
+            formControlName="phoneNumber"
+            name="phoneNumber"
+            type="text"
+            appPhoneMask
+            maxlength="12"
+            placeholder="__ ___-__-__"
+            id="phone-number"
+          />
+        </div>
+      </div>
+
       <div class="d-flex w-100">
-        <label class="form-group has-float-label w-50 pr-3">
+        <div class="form-group w-50 pr-3">
+          <span>Shahar</span>
           <ng-select
             [items]="citiesArray"
             bindLabel="name"
@@ -82,10 +72,10 @@
             name="city"
           >
           </ng-select>
-          <span>Shahar</span>
-        </label>
+        </div>
 
-        <label class="form-group has-float-label w-50">
+        <div class="form-group w-50">
+          <span>Tuman</span>
           <ng-select
             [items]="districts"
             [searchable]="false"
@@ -93,18 +83,17 @@
             formControlName="district"
           >
           </ng-select>
-          <span>Tuman</span>
-        </label>
+        </div>
       </div>
-      <label class="form-group has-float-label">
+      <div class="form-group">
+        <label>Promocode</label>
         <input
           class="form-control"
           required
           formControlName="promocode"
           name="promocode"
         />
-        <span>Promocode</span>
-      </label>
+      </div>
       <button class="btn btn-primary" type="submit">Yuborish</button>
     </form>
 

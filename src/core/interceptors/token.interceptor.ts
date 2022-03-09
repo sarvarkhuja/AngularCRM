@@ -1,6 +1,6 @@
-import { Observable, throwError, of } from 'rxjs';
-import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
+import { Observable, throwError, of } from "rxjs";
+import { Injectable } from "@angular/core";
+import { Router } from "@angular/router";
 import {
   HttpInterceptor,
   HttpHandler,
@@ -10,9 +10,9 @@ import {
   HttpProgressEvent,
   HttpResponse,
   HttpUserEvent,
-} from '@angular/common/http';
-import { catchError } from 'rxjs/operators';
-
+} from "@angular/common/http";
+import { catchError } from "rxjs/operators";
+import { AuthService } from "../services/auth/auth.service";
 
 /**
  *
@@ -22,9 +22,7 @@ export class TokenInterceptor implements HttpInterceptor {
   /**
    *
    */
-  constructor(
-    public router: Router
-  ) {}
+  constructor(public router: Router, private authService: AuthService) {}
 
   /**
    *
@@ -39,28 +37,26 @@ export class TokenInterceptor implements HttpInterceptor {
     | HttpResponse<any>
     | HttpUserEvent<any>
   > {
+    const token = this.authService.getAuthTokenValue();
+    console.log(token);
+
     req = req.clone({
       setHeaders: {
-        'Access-Control-Allow-Origin': '*',
+        Authorization: `Bearer ${token}`,
       },
     });
     return next.handle(req).pipe(
       catchError((err) => {
         if (err.status === 401) {
           //this.auth.logout();
-          this.router.navigate(['/auth/sign-in']);
+          this.router.navigate(["/auth/sign-in"]);
         }
         if (err.error) {
           const errors = this.formatErrors(err);
-         // this.toastr.error(errors[0]);
+          // this.toastr.error(errors[0]);
           return throwError(errors);
         } else {
-          // this.toastr.error('Произошла неожиданная ошибка.', 'Ошибка', {
-          //   closeButton: true,
-          //   timeOut: 5000,
-          //   onActivateTick: true,
-          // });
-          return throwError('Произошла неожиданная ошибка.');
+          return throwError("Произошла неожиданная ошибка.");
         }
       })
     );
@@ -70,7 +66,7 @@ export class TokenInterceptor implements HttpInterceptor {
    *
    */
   private formatErrors(err): string[] {
-    if (typeof err.error === 'string') {
+    if (typeof err.error === "string") {
       return [err.error];
     }
     if (err.error.error) {
@@ -82,6 +78,6 @@ export class TokenInterceptor implements HttpInterceptor {
     if (err.message) {
       return [err.message];
     }
-    return ['Something went wrong'];
+    return ["Something went wrong"];
   }
 }
